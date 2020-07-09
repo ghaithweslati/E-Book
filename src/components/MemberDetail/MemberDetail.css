@@ -1,0 +1,64 @@
+.detailAdherent 
+{
+  padding: 5% 8%;
+  display: block;
+}
+
+.detailAdherent>img
+{
+  width: 30%;
+  float: left;
+  margin-right:3%;
+}
+
+
+
+#info
+{
+  padding-left: 4%;
+}
+
+
+.detailAdherent>#info>label
+{
+  font-weight: normal;
+  font-size: 15px;
+  
+}
+
+.detailAdherent>#info>h1
+{
+  margin: 0;
+}
+
+.detailAdherent>#infohr
+{
+  border:  solid 1px rgba(199, 199, 199, 0.452);
+}
+
+.detailAdherent>#info>p
+{
+  margin-bottom: 20px;
+}
+
+
+.detailAdherent>#info>b
+{
+  font-size: 22px;
+  float: left;
+}
+
+#book
+{
+  float:right;
+}
+
+.detailAdherent section
+{
+  margin-left: 30%;
+  margin-top: 6%;
+}
+.detailAdherent section>*
+{
+display: inline-table;
+}

@@ -1,0 +1,107 @@
+.book
+{
+  margin-bottom: 3%;
+  margin-left: 25px;
+}
+
+.book img
+{
+  margin-bottom: 8%;
+  transition: transform 1s linear;
+}
+
+.book img:hover
+{
+  transform: rotateY(180deg);
+}
+
+.book > *
+{
+  display: block;
+}
+
+.book span
+{
+  color: #666;
+  font-size: 14px;
+}
+
+.book span:hover
+{
+  color: blue;
+}
+
+
+.book b
+{
+  color: #484848;
+  margin-top: 5%;
+  margin-bottom: 8%;
+  width: 150px;
+}
+
+.book h5
+{
+  color: #77b748;
+  font-weight: bold;
+
+  font-size: 14px;
+}
+
+
+
+.book b:hover
+{
+  color: #77b748;
+}
+
+
+.book label
+{
+  margin-top: 8%;
+  border-radius: 15%;
+  padding: 1.5%;
+  color: white;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.book hr
+{
+width: 85%;
+text-align:left;
+margin-left:0;
+border:  solid 0.5px #dadada;
+}
+
+.book p
+{
+  border: #dadada solid 0.5px;
+  color: #6d6d6d;
+  border-radius: 10% / 50%;
+  padding: 4%;
+  text-align: center;
+  font-size: 14px;
+  width: 75%;
+  margin-top: 12%;
+  margin-left:7%;
+}
+
+
+.book p:hover
+{
+  background-color:#77b748;
+  color: white;
+}
+
+#Disponible
+{
+  background-color:#77b748;
+  width: 40%;
+}
+
+#Archivé,#Borrowed
+{
+  background-color: #f16945;
+  width: 40%;
+}

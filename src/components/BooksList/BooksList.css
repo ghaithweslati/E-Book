@@ -1,0 +1,75 @@
+.listLivre
+{
+  padding: 0% 5%;
+  margin-top: 4%;
+}
+
+
+.listLivre header>h1
+{
+  padding: 0;
+  color: #484848;
+  font-weight: normal;
+  font-size: 28px;
+  float: left;
+  margin: 0;
+}
+
+.listLivre header>h1+h1
+{
+  margin-right: 7%;
+  float: right;
+  border: #b1b0b0 solid 0.5px;
+  color: #b1b0b0;
+  border-radius: 50%;
+  padding: 5px;
+  width: 30px;
+  text-align: center;
+}
+
+.listLivre header>h1+h1:hover
+{
+  background-color:#77b748;
+  color: white;
+}
+
+.listLivre hr
+{
+width: 96%;
+text-align:left;
+margin-left:0;
+border:  solid 0.5px #dadada;
+margin-bottom: 2.5%;
+
+}
+
+.listLivre section>*
+{
+  display: inline-table;
+}
+
+.listLivre header nav>input
+{
+  
+    width: 300%;
+    height: 10%;
+    font-size: 15px;
+    margin-left: 10%;
+    text-align: center;
+    border: solid 1px rgb(190, 189, 189);
+    padding:10px;
+    text-align: left;
+    margin-left: 30px;
+    margin-top: -50px;
+}
+
+.listLivre header>*
+{
+display: inline-table;
+}
+.listLivre header
+{
+  padding: 0;
+  margin: 0;
+  margin-bottom: 3%;
+}

@@ -1,0 +1,85 @@
+
+#navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #77b748;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  padding-left: 7%;
+  border-bottom: solid 1px #4CAF50;
+}
+
+#navbar  li {
+  float: left;
+}
+
+#navbar  li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 17px;
+  font-size: 14px;
+  text-decoration: none;
+  
+}
+
+#navbar  li a:hover {
+  background-color: #4CAF50;
+}
+
+#navbar nav
+{
+  text-align: center;
+  padding: 6%;
+  background-image: url("./BookCover.PNG") ;
+  background-size: cover;
+  
+}
+
+#navbar h1
+{
+  font-size: 50px;
+  color: #484848;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 1%;
+}
+
+#navbar div a
+{
+  background-color: #77b748;
+  color: white;
+  text-align: center;
+  padding: 6px;
+}
+
+
+
+#navbar div
+{
+  padding-bottom: 40px;
+}
+
+header
+{
+  padding: 3% 7%;
+}
+
+
+aside
+{
+  display: block;
+  float: right;
+  width: 50%;
+}
+
+aside img
+{
+  height: 80px;
+  margin-left: 4%;
+  float:right;
+}
+
