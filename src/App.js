@@ -1,112 +1,128 @@
-import React, { useState } from "react"
-import Login from './components/Login/Login';
-import Inscription from './components/Inscription/Inscription';
-import BooksList from './components/BooksList/BooksList';
-import MembersList from './components/MembersList/MembersList';
-import BorrowedsList from './components/BorrowedsList/BorrowedsList';
-import MemberDetail from './components/MemberDetail/MemberDetail';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { fetchMembers,fetchMyBorrowed, fetchMemberById } from "./services/members.service"
-import './App.css';
+import React, { useState } from "react";
+import Login from "./components/Login/Login";
+import Inscription from "./components/Inscription/Inscription";
+import BooksList from "./components/BooksList/BooksList";
+import MembersList from "./components/MembersList/MembersList";
+import BorrowedsList from "./components/BorrowedsList/BorrowedsList";
+import MemberDetail from "./components/MemberDetail/MemberDetail";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import {
+  fetchMembers,
+  fetchMyBorrowed,
+  fetchMemberById,
+} from "./services/members.service";
+import "./App.css";
 import { fetchBooks } from "./services/books.service";
 
-
-
-
 function App() {
-
-
-
-  var bor=[]
-  const current=JSON.parse(localStorage.getItem('current'));
-  if(current)
-    bor=fetchMyBorrowed(current.id);
+  var bor = [];
+  var current = { id: 0, type: "admin" };
+  if (localStorage.getItem("current"))
+    current = JSON.parse(localStorage.getItem("current"));
+  if (current) bor = fetchMyBorrowed(current.id);
   const [borrowed, setBorowed] = useState(bor);
 
-  
-  const getBook = (isbn, image, categorie,titre,etat,nbExemp,auteur) => {
+  const getBook = (isbn, image, categorie, titre, etat, nbExemp, auteur) => {
     var d = new Date();
-    var dateEmp = d /*("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" +
+    var dateEmp = d; /*("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" +
     d.getFullYear() + " " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);*/
-    setBorowed(previousBooks => [
-      { isbn, image, categorie,titre,etat,dateEmp,nbExemp,auteur },...previousBooks
-    ])
-    fetchMyBorrowed(current.id).unshift( { isbn, image, categorie,titre,etat,dateEmp,nbExemp,auteur });
-    localStorage.setItem('members',JSON.stringify(fetchMembers()))
-    
-  }
+    setBorowed((previousBooks) => [
+      { isbn, image, categorie, titre, etat, dateEmp, nbExemp, auteur },
+      ...previousBooks,
+    ]);
+    fetchMyBorrowed(current.id).unshift({
+      isbn,
+      image,
+      categorie,
+      titre,
+      etat,
+      dateEmp,
+      nbExemp,
+      auteur,
+    });
+    localStorage.setItem("members", JSON.stringify(fetchMembers()));
+  };
 
-  const renderBook=(bookToReturn)=>{
-    const borroweds=borrowed.filter(borr=>borr.isbn!=bookToReturn.isbn)
+  const renderBook = (bookToReturn) => {
+    const borroweds = borrowed.filter((borr) => borr.isbn != bookToReturn.isbn);
     setBorowed(borroweds);
-    fetchMemberById(current.id).livres=borroweds;
-    localStorage.setItem('members',JSON.stringify(fetchMembers()))
-  }
-  
+    fetchMemberById(current.id).livres = borroweds;
+    localStorage.setItem("members", JSON.stringify(fetchMembers()));
+  };
 
   return (
+    <div className="App">
+      {window.location.pathname.substring(1) != "login" &&
+        window.location.pathname.substring(1) != "inscription" && (
+          <div>
+            <header>
+              <img
+                src={require("./logo.png")}
+                alt="logo"
+                className="brand-logo"
+              />
+              <aside>
+                {borrowed.map((step, index) => (
+                  <img
+                    src={require("./components/Book/Cover/" + step.image)}
+                    alt="logo"
+                    className="brand-logo"
+                    onClick={(e) => renderBook(step)}
+                  />
+                ))}
+              </aside>
+            </header>
+            <div id="navbar">
+              <ul>
+                <li>
+                  <a href="/books">Books</a>{" "}
+                </li>
+                <li>
+                  {current.type === "Admin" && <a href="/members">Members</a>}
+                </li>
+                <li>
+                  {current.type === "Admin" && (
+                    <a href="/borroweds">Borroweds</a>
+                  )}
+                </li>
+              </ul>
+              <nav>
+                <h1>
+                  <b>All {window.location.pathname.substring(1)}</b>
+                </h1>
+                <div>
+                  <a href="./login">Home {">"}</a>
+                  <a> Books</a>
+                </div>
+              </nav>
+            </div>
+          </div>
+        )}
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/login">
+            <Login></Login>
+          </Route>
 
-    <div  className="App">
-      
-     {(window.location.pathname.substring(1)!='login'&&window.location.pathname.substring(1)!='inscription')  && <div>
-      <header>
-      <img src={require('./logo.png')} alt="logo" className="brand-logo"/>
-      <aside>
-        {borrowed.map((step ,index) => (
-             <img src={require('./components/Book/Cover/'+step.image)} alt="logo" className="brand-logo" onClick={e => renderBook(step)}/>
-        ))}
-      </aside>
-      </header>
-      <div id="navbar">
-      <ul>
-        
-  <li><a href="/books">Books</a> </li>
-        <li>{current.type=='Admin' && < a href="/members">Members</a>}</li>
-        <li>{current.type=='Admin' &&<a href="/borroweds">Borroweds</a>}</li>
-</ul>
-<nav>
-  <h1><b>All {window.location.pathname.substring(1)}</b></h1>
-  <div>
-    <a href="./login">Home {'>'}</a><a> Books</a>
-  </div>
-</nav>
- </div>
- </div>} 
-<BrowserRouter>
-<Switch>
-<Route exact path="/login">
-  <Login >
-        </Login>
-  </Route>
+          <Route exact path="/inscription">
+            <Inscription></Inscription>
+          </Route>
 
-  <Route exact path="/inscription">
-  <Inscription >
-        </Inscription>
-  </Route>
-
-
-<Route exact path="/books">
-      <BooksList  borrowed={borrowed.length} getBook={getBook} >
-        </BooksList>
-  </Route>
-  <Route exact path="/members/:memberId" >
-      <MemberDetail>
-        </MemberDetail>
-  </Route>
-  <Route exact path="/members">
-      <MembersList tab={fetchMembers()}  >
-        </MembersList>
-   </Route>
+          <Route exact path="/books">
+            <BooksList borrowed={borrowed.length} getBook={getBook}></BooksList>
+          </Route>
+          <Route exact path="/members/:memberId">
+            <MemberDetail></MemberDetail>
+          </Route>
+          <Route exact path="/members">
+            <MembersList tab={fetchMembers()}></MembersList>
+          </Route>
           <Route exact path="/borroweds">
-      <BorrowedsList tab={fetchMembers()}  >
-        </BorrowedsList>
-  </Route>
-</Switch>
-</BrowserRouter>
-
+            <BorrowedsList tab={fetchMembers()}></BorrowedsList>
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
-
-
   );
 }
 
