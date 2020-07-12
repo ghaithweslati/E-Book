@@ -16,6 +16,7 @@ import { fetchBooks } from "./services/books.service";
 
 function App() {
   var bor = [];
+  const [books, setBooks] = useState([]);
   var current = { id: 0, type: "admin" };
   if (localStorage.getItem("current"))
     current = JSON.parse(localStorage.getItem("current"));
@@ -48,6 +49,31 @@ function App() {
     setBorowed(borroweds);
     fetchMemberById(current.id).livres = borroweds;
     localStorage.setItem("members", JSON.stringify(fetchMembers()));
+  };
+
+  const addBook = (image, categorie, titre, nbExemp, auteur) => {
+    setBooks((previousBooks) => [
+      {
+        isbn: books.length + 1,
+        image,
+        categorie,
+        titre,
+        etat: "Disponible",
+        nbExemp,
+        auteur,
+      },
+      ...previousBooks,
+    ]);
+    fetchBooks().unshift({
+      isbn: fetchBooks().length + 1,
+      image,
+      categorie,
+      titre,
+      etat: "Disponible",
+      nbExemp,
+      auteur,
+    });
+    localStorage.setItem("books", JSON.stringify(fetchBooks()));
   };
 
   return (
@@ -109,7 +135,7 @@ function App() {
           </Route>
 
           <Route exact path="/books">
-            <BooksList borrowed={borrowed.length} getBook={getBook}></BooksList>
+            <BooksList borrowed={borrowed.length} getBook={getBook} addBook={addBook}></BooksList>
           </Route>
           <Route exact path="/members/:memberId">
             <MemberDetail></MemberDetail>

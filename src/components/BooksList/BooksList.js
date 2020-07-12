@@ -13,31 +13,8 @@ function BooksList(props) {
   if (localStorage.getItem("current"))
     current = JSON.parse(localStorage.getItem("current"));
 
-  const addBook = (image, categorie, titre, nbExemp, auteur) => {
-    setBooks((previousBooks) => [
-      {
-        isbn: books.length + 1,
-        image,
-        categorie,
-        titre,
-        etat: "Disponible",
-        nbExemp,
-        auteur,
-      },
-      ...previousBooks,
-    ]);
-    fetchBooks().unshift({
-      isbn: fetchBooks().length + 1,
-      image,
-      categorie,
-      titre,
-      etat: "Disponible",
-      nbExemp,
-      auteur,
-    });
-    localStorage.setItem("books", JSON.stringify(fetchBooks()));
-  };
-
+  const addBook = props.addBook;
+  
   const memoizedCallback = useCallback(addBook, []);
 
   const updateBook = (isbn, image, categorie, titre, etat, nbExemp, auteur) => {
