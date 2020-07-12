@@ -65,7 +65,7 @@ function BookForm({ addBook, maxnbExempValue }) {
           The duration must be less then {maxnbExempValue}
         </div>
       )}
-      <button data-testid="submit" className="button" onClick={handleAddBook}>
+      <button data-testid="addBook" className="button" onClick={handleAddBook}>
         Add a book
       </button>
     </div>

@@ -12,6 +12,9 @@ Object {
           <h1>
             List of Books
           </h1>
+          <h1>
+            +
+          </h1>
           <nav>
             <input
               name="search"
@@ -374,6 +377,9 @@ Object {
       <header>
         <h1>
           List of Books
+        </h1>
+        <h1>
+          +
         </h1>
         <nav>
           <input

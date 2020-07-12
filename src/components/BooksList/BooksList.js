@@ -9,7 +9,7 @@ function BooksList(props) {
   const [searchValue, setSearchValue] = useState("");
   const [add, setAdd] = useState(true);
 
-  var current = { id: 0, type: "admin" };
+  var current = { id: 0, type: "Admin" };
   if (localStorage.getItem("current"))
     current = JSON.parse(localStorage.getItem("current"));
 

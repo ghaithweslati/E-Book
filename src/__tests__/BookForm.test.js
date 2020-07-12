@@ -36,7 +36,7 @@ describe("testing Add book", () => {
     expect(inputNbExemp).toBeTruthy();
     expect(inputNbExemp).toHaveAttribute("type", "text");
 
-    expect(getByTestId("submit")).toBeTruthy();
+    expect(getByTestId("addBook")).toBeTruthy();
   });
 
   test("should fire event", () => {
@@ -61,7 +61,7 @@ describe("testing Add book", () => {
 
     // debug();
 
-    const submitButton = getByTestId("submit");
+    const submitButton = getByTestId("addBook");
     userEvent.click(submitButton);
     // fireEvent.click(submitButton);
     expect(mockAddbook).toHaveBeenCalled();
