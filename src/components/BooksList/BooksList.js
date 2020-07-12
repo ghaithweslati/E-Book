@@ -7,14 +7,14 @@ import { fetchBooks, searchBooks } from "../../services/books.service";
 function BooksList(props) {
   const [books, setBooks] = useState([]);
   const [searchValue, setSearchValue] = useState("");
-  const [add, setAdd] = useState(true);
+  const [add, setAdd] = useState(props.add);
 
   var current = { id: 0, type: "Admin" };
   if (localStorage.getItem("current"))
     current = JSON.parse(localStorage.getItem("current"));
 
   const addBook = props.addBook;
-  
+
   const memoizedCallback = useCallback(addBook, []);
 
   const updateBook = (isbn, image, categorie, titre, etat, nbExemp, auteur) => {

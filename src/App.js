@@ -135,7 +135,12 @@ function App() {
           </Route>
 
           <Route exact path="/books">
-            <BooksList borrowed={borrowed.length} getBook={getBook} addBook={addBook}></BooksList>
+            <BooksList
+              borrowed={borrowed.length}
+              getBook={getBook}
+              addBook={addBook}
+              add={true}
+            ></BooksList>
           </Route>
           <Route exact path="/members/:memberId">
             <MemberDetail></MemberDetail>
