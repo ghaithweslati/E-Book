@@ -9,6 +9,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import {
   fetchMembers,
   fetchMyBorrowed,
+  fetchMyCurrentBorrowed,
   fetchMemberById,
 } from "./services/members.service";
 import "./App.css";
@@ -20,7 +21,7 @@ function App() {
   var current = { id: 0, type: "admin" };
   if (localStorage.getItem("current"))
     current = JSON.parse(localStorage.getItem("current"));
-  if (current) bor = fetchMyBorrowed(current.id);
+  if (current) bor = fetchMyCurrentBorrowed(current.id);
   const [borrowed, setBorowed] = useState(bor);
 
   const getBook = (isbn, image, categorie, titre, etat, nbExemp, auteur) => {
@@ -45,10 +46,14 @@ function App() {
   };
 
   const renderBook = (bookToReturn) => {
-    const borroweds = borrowed.filter((borr) => borr.isbn != bookToReturn.isbn);
-    setBorowed(borroweds);
-    fetchMemberById(current.id).livres = borroweds;
-    localStorage.setItem("members", JSON.stringify(fetchMembers()));
+    if(window.confirm('Do you really want to return this book'))
+    {
+      bookToReturn.dateRet=new Date();
+      const borroweds = borrowed.filter((bor) => bor.isbn != bookToReturn.isbn);
+      setBorowed(borroweds);
+    // fetchMemberById(current.id).livres = borroweds;
+      localStorage.setItem("members", JSON.stringify(fetchMembers()));
+    }
   };
 
   const addBook = (image, categorie, titre, nbExemp, auteur) => {

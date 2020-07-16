@@ -41,6 +41,12 @@ export const fetchMyBorrowed = (id) => {
   return members.filter((member) => member.id == id)[0].livres;
 };
 
+export const fetchMyCurrentBorrowed = (id) => {
+  //await delay(2000)
+  const livres = members.filter((member) => member.id == id)[0].livres;
+  return livres.filter((livre) => livre.dateRet == null)
+};
+
 export const fetchBorroweds = (async) => {
   //await delay(2000)
   var borr = [];
@@ -49,6 +55,18 @@ export const fetchBorroweds = (async) => {
       borr.unshift(members[i].livres[g]);
   return borr;
 };
+
+export const fetchCurrentBorroweds = (async) => {
+  //await delay(2000)
+  var borr = [];
+  for (let i = 0; i < members.length; i++)
+    for (let g = 0; g < members[i].livres.length; g++)
+      if(members[i].livres[g].dateRet==null)
+      borr.unshift(members[i].livres[g]);
+  return borr;
+};
+
+
 
 export const fetchBorrowedsRetard = (async) => {
   //await delay(2000)

@@ -44,7 +44,7 @@ function Book(props) {
       props.categorie,
       props.titre,
       "Borrowed",
-      nbExempToUpdate,
+      nbExempToUpdate-1,
       props.auteur
     );
     props.getBook(
@@ -67,7 +67,8 @@ function Book(props) {
         {etatToUpdate}
       </label>
       <b data-testid="titre-book">{props.titre}</b>
-      <b>{props.dateEmp}</b>
+      <b>{props.dateEmp && props.dateEmp.substring(0, 10)}</b>
+      <b>{props.dateRet && props.dateRet.substring(0, 10)}</b>
       <span>By {props.auteur}</span>
       <h5>{nbExempToUpdate} Copies</h5>
       {etatToUpdate != "Archivé" &&
